@@ -1,0 +1,521 @@
+Linux:
+-------
+ubuntu --username
+@ip-172-31-25-180:~hostname
+$-->normal user
+
+ubuntu@ip-172-31-40-235:~$
+
+ubuntu@ip-172-31-25-180:~$
+root@ip-172-31-25-180:~#-->root user 
+
+creating files:
+--------------------
+1.touch
+syntax: touch filename
+        touch filename1 filename2 filename3
+		
+2.cat
+syntax: cat > filename
+         ------
+		 ------
+		 ctrl+d (save and exit)
+		 cat >> filename (to append the data)
+		 ------
+		 -----
+		 ctrl + d 
+		 cat filename (to see the content in side file)
+		 
+creating directories:
+----------------------
+syntax:
+
+mkdir <directory name>
+mkdir <directory name> <directory name> <directory name>
+mkdir abc
+mkdir -p a1/b1/c1/d1/e1
+
+cd -->change directory
+cd .. -->one step back
+cd ../..
+cd ../../../
+cd --->go to home directory
+cd ~
+
+3.vi editor
+------------
+1.command mode--->
+2.insert mode-->
+3.esc mode--->
+
+1.command mode:
+
+shift G:
+gg
+dd: 
+10 dd
+w
+3w
+b 
+4b
+yy
+p
+5yy
+/ search word
+
+2.insert mode:
+add
+edit 
+
+3.esc mode:
+:w 
+:wq
+:q!
+:se nu
+:se nonu
+:q
+:wq!
+
+:1,$s /oldword/newword/g 
+Commands:
+--------
+pwd
+whoami
+who
+hostname
+ifconfig
+ip a 
+ip addr
+ll
+ls
+ls -al
+ls -lt
+ls -lrt
+touch .filename
+ping
+free -m 
+echo $SHELL
+cat /etc/shells
+ps - ef
+kill -9 pid 
+kill pid
+uptime
+telnet 
+df -h
+du -h /etc 
+ps -ef | grep java
+top
+
+tar command:
+------------
+zip files/extract files
+ 
+ sampledir --> sampledir.tar
+               sampledir.tar.gz (gun zip)  10gb--->1gb
+			   sampledir.tar.bz2 (bun zip) 10gb--->800mb
+tar -cvf
+tar -xvf
+ 
+ -options: c  = create a new .tar archive file
+           v = verbos
+		   f = file name type of the archive file
+--------------------------------------------------------
+crontab:
+---------
+crontab -l 
+crontab -e
+crontab -u root -r 
+
+#
+# .---------------- minute (0 - 59)
+# |  .------------- hour (0 - 23)
+# |  |  .---------- day of month (1 - 31)
+# |  |  |  .------- month (1 - 12) OR jan,feb,mar,apr ...
+# |  |  |  |  .---- day of week (0 - 6) (Sunday=0 or 7) OR sun,mon,tue,wed,thu,fri,sat
+# |  |  |  |  |
+# *  *  *  *  * user-name command to be executed
+
+crontab -l
+crontab -e
+
+crontab -u root -r
+
+0 22 * * * 
+
+0 21 * * * 
+0/30 21 * * * 
+
+0 21-23
+
+cd /tmp
+vi script.sh
+#!/bin/bash
+echo $(whoami)
+echo $(date)
+:wq
+chmod 700 script.sh
+crontab -e
+
+* * * * * /tmp/script.sh >> /tmp/data
+:wq
+tmp] ll
+cat data
+
+
+ 
+
+		   
+			   
+			   
+			   
+
+
+
+
+
+
+permissions:
+-------------
+1.owner level  ===u 
+2.group level  ===g  
+3.other level  ===o 
+
+d rwx rwx r-x 3 ubuntu ubuntu  4096 May 14 03:47 a/
+- r-- -w- rw- 1 ubuntu ubuntu     0 May 16 13:46 sample22
+chmod 626 filename/dir name
+r==read ==4
+w==write==2
+x==execute=1
+
+1.symbolic 
+2.numaric
+
+
+Normal user:
+
+max file permission 666
+                    002
+					---
+					664
+					
+max dir  permission 777
+                    002
+					---
+					775
+
+- rw- rw- r-- 
+   6   6  4
+   
+   rwx rwx r-x 
+    7   7  5
+	
+root user:
+---------
+rw- r-- r-- 
+6   4   4
+ max file permission  666
+                      022
+					  ----
+					  644
+					  
+ max dir permission 777
+                    022
+					---
+					755
+rwx r-x r-x 
+7	5    5		
+		
+permissions syntax:
+
+chmod 777 filename/dir name
+
+chmod u,g,o filename/dir name
+
+rwx r-- ---   a/
+
+chmod u-x,g+w,o+rwx a
+
+rw- rw- rwx
+
+rw-rw-r--
+r-- -w- rw- 
+4    2   6
+
+rwx rwx r-x  
+
+chmod 351 sss
+
+-wx r-x --x 
+
+rwx rwx r-x
+chmod 740 a
+rwx r-- --- 
+
+
+chmod -R 777 dir1/
+
+chmod <permissions> filename/dir name
+
+cat filename  /etc/passwd
+less filename /etc/passwd
+more filename /etc/passwd
+
+head filename (default top 10 lines capture)
+head -5 filename
+
+tail filename (default bottom 10 lines capture)
+tail -3 /etc/passwd
+
+
+mv <source> <destination>
+mv <oldname> <newname>
+
+copy:
+-----
+syntax: cp <source> <destination>
+
+optins:
+-r
+-v
+-p
+-f 
+
+scp
+rsync
+------------------------------------------------
+cat  /etc/passwd
+less
+more
+head /etc/passwd (default top 10 lines capture)
+head -5 /etc/passwd
+tail /etc/passwd (default last 10 lines capture)
+tail -20 /etc/passwd
+-------------------------------------------------------
+syntax:
+-------
+grep word filename
+
+wc:wordcount
+wc filename
+
+wc -l filename
+wc -w filename
+wc -c filename
+wc -lw filename
+
+cut: it is used to picking data from file column fashion.
+
+user management:
+----------------
+1.cat /etc/passwd---->
+nagarjuna:x:1001:1001::/home/nagarjuna:/bin/sh
+2.cat /etc/shadow----> password info.
+nagarjuna:!:19131:0:99999:7:::
+
+3 types of user:
+--------------------
+1.root user 
+2.system users (will start from 1 to 999)
+3.normal users (will start from 1000 to 60000)
+
+How to create user?
+---------------------
+syntax:
+
+useradd <username>
+useradd abc
+
+How to setup password:
+
+----------------------
+syntax:
+
+passwd <username>
+passwd abc
+
+------------------------------------------------
+nagarjuna:x:1001:1001::/home/nagarjuna:/bin/sh
+
+usermod -u 2000 knr
+usermod -c "Normal User" knr
+usermod -d /mydir knr
+usermod -s /bin/bash knr
+
+how to delete user?
+------------------------
+userdel <username>
+userdel -r <username>
+ how to change the username?
+ ----------------------------
+ usermod -l new username old username
+ 
+ 
+Group Administration:
+----------------------
+How to create a group?
+----------------------
+syntax:
+
+groupadd <groupname>    cat /etc/group
+
+How to add users into the group?
+---------------------------------
+syntax:
+
+gpasswd -a <username> <groupname>
+
+gpasswd -a nagarjuna sales
+
+adding multiple users :
+------------------------
+syntax:
+
+gpasswd -M user1 user2 user3 groupname
+
+How to make single user as a groupadmin?
+--------------------------------------------
+synatx:
+gpasswd -A <username> <groupname>
+
+cat /etc/gshadow    ---->group releated password info
+
+How to set the password for group?
+----------------------------------
+synatx:
+
+gpasswd <groupname>
+
+How to remove user in a group?
+-----------------------------------
+syntax:
+
+gpasswd -d <username> <groupname>   
+
+cat /etc/passwd   
+cat /etc/shadow
+cat /etc/group
+cat /etc/gshadow
+
+How  to rename the group?
+-------------------------
+groupmod -n <newgroup name> <old groupname>
+
+How to delete the group?
+------------------------
+syntax:
+
+groupdel <groupname>
+------------------------------------------
+package management:
+-------------------
+
+1.rpm: 
+2.yum:
+
+
+2.yum: yum install git -y       apt-get install git -y
+rpm:
+
+rpm -qa <packagename>
+rpm -qa git
+rpm -qa --->show all installed packages.
+rpm -qa --last ---> show all installed packages and show date and time.
+rpm -ivhU packagename  
+rpm -e <packagename>
+--------------------------------
+yum: or dnf
+
+yum update
+yum install <packagename> 
+yum update <packagename>
+yum reinstall <packagename>
+yum downgrade <packagename>
+yum repolist
+yum repolist all 
+yum uninstall <packagename>
+or
+yum remove <packagename>
+yum clean all 
+
+grep : is used to search for particular word/string capture it.
+
+syntax:
+---------
+grep word filename
+eg: grep nag /etc/passwd
+grep SPOOL /etc/passwd
+grep -i SPOOL /etc/passwd
+grep -n spool /etc/passwd
+grep -nv spool /etc/passwd (ignore spool)
+egrep 'aws|linux' filename
+
+cut: it is used picking data from file in column fashion
+---
+
+eg: cut -d ":" -f 1,7 /etc/passwd
+    cut -d " " -f 1,3 filename (-d=delimiter,-f=field)
+	
+wc: wordcount used for counting words,char,lines
+--
+eg: wc filename
+    wc -l filename 
+	wc -c filename 
+	wc -lw filename
+	
+find:
+-----
+synatx:
+--------
+find location -options filename/dirname
+
+
+  find . -name "*.txt"
+  find /root -name "*.txt"
+  find /root -name "*.log"
+  find /root -name aaa
+  find /root -iname aaa
+  find /root -type f -perm 0644 -print
+  find /root -type d -perm 0777 -print
+  mkdir knr1
+  chmod 777 knr1
+  find /root -type d -perm 0777 -print
+  574  find /root -type d -perm 0755 -print
+  575  find /root -user ubuntu
+  576  cd /home/
+  577  find /root -user ubuntu
+  578  find /home -user ubuntu
+  579  ll
+  580  cd
+  581  pwd
+  582  find /root -size 1M
+  583  find /root -size +10M
+  584  find /root -size +1M
+  585  find /root -size +20M -size -50M
+
+-----------------------------------------------------------------
+systemctl cmds:
+-------------------
+
+service servicename  
+service  jenkins start/stop/status/restart/reload/enable
+systemctl start/stop/status/restart/reload/enable jenkins
+systemctl restart jenkins/tomcat/apache2
+---------------------------------------------------------
+ssh:(secure shell host)
+Links:
+------
+1.softlink:
+2.hardlink
+
+syntax: softlink
+-------
+ln -s <source> <destnation>
+Eg:
+ln -s /opt/file1 /root
+
+syntax: hardlink
+ln <source> <destnation>
+
+
+
+
